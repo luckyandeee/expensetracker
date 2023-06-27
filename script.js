@@ -1,4 +1,4 @@
-$("#firstins").fadeIn();
+$("#firstins").show();
 $("#floatId").hide();
 function bugetRemain() {
   var afteradd = document.querySelectorAll(".amount");
@@ -33,6 +33,7 @@ function expenseadd() {
     listCreator(expenseCategory, expenseAmt, expenseReason);
   }
   $("#floatId").show();
+
 }
 //Function To Create List
 const listCreator = (expenseCategory, expenseAmt, expenseReason) => {
@@ -78,7 +79,6 @@ $(document).ready(function () {
       alert("Add Budget to start with Expense Tracker!");
       $(".expensepass").fadeOut();
       $(".MyForm").fadeOut();
-      $("#firstins").fadeIn();
     }
     bugetRemain();
   });
@@ -229,3 +229,6 @@ function myHideandSeek() {
     y.style.display = "block";
   }
 }
+$(document).on("click", "#floatId", function () {
+piechart();
+});
