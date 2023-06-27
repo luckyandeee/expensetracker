@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Expense Tracker</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="white"
+                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                        <path
+                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z" />
+                    </svg>
+                    <span class="text-light lead"> Expense Tracker</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 col-12">
+                <div class="row mt-5">
+                    <table class="table">
+                        <tr scope="row">
+                            <td>
+                                <label for="budgetamt" class="lead">Add Budget</label><br>
+                                <input autocomplete="off" type="number" id="budgetamt" required>
+                            </td>
+                            <td>
+                                <button id="budgetAmtYes" class="btn fa fa-check" style="font-size: 1.2em;"></button>
+                            </td>
+                        </tr>
+                        <tr scope="row">
+                            <td>
+                                <label class="lead">Budget Amount</label><br>
+                                <input autocomplete="off" type="number" id="displayBudgetAmount" readonly>
+                            </td>
+                            <td>
+                                <label class="lead">Budget Remaining</label><br>
+                                <p id="displayBudgetremain"><span> Rs</span></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <form action="" class="MyForm">
+                    <div class="row mt-5">
+                        <div class="row">
+                            <div class="col-5"><label for="expenseCategory" class="lead">Expense Category</label></div>
+                            <div class="col-7"> <input autocomplete="off" type="text" class="form-control mb-1"
+                                    id="expenseCategory" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5"><label for="expenseAmt" class="lead ">Expense Amount</label></div>
+                            <div class="col-7"> <input autocomplete="off" type="number" class="form-control mb-1"
+                                    id="expenseAmt" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5"> <label for="expenseReason" class="lead d-none d-md-block ">Expense
+                                    Description</label></div>
+                            <div class="col-7"> <input autocomplete="off" type="text"
+                                    class="form-control mb-3 d-none d-md-block " id="expenseReason"></div>
+                        </div>
+                        <div class="row">
+                            <input autocomplete="off" type="button" value="Add Expense" class="btn btn-outline-dark"
+                                onclick="expenseadd()">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="firstins">
+        <div class="container ">
+            <div class="row ">
+                <div class="display-4 text-center">
+                    Instructions to start 
+                </div>
+                <div class="lead text-center">
+
+
+                                Give input in the Add Budget field 
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="display-5 text-center">
+                    Thinks to know
+                </div>
+                <div class="lead text-center">
+<p>
+                                this Project is still under Construction, presently finished stage one.
+                            </p><p>
+                                i'll make sure to give as many as good and feasible features in near future
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container expensepass ">
+        <h3 class="text-center display-6 ">Expenses</h3>
+        <div class="list-container content" id="list">
+            <div class="container border-warning border-top  ">
+                <div class="row border-info border-bottom mt-3 ">
+                    <div class="col-md-3 col-3">
+                        Category
+                    </div>
+                    <div class="col-md-3 col-3">
+                        Expense
+                    </div>
+                    <div class="col-md-3 col-0 d-none d-md-block">
+                        Description
+                    </div>
+                    <div class="col-md-3 col-3">
+                        Update/Delete
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <button class="  btn-outline-primary floating" id="floatId">PieChart
+    </button>
+    <div class="row d-flex justify-content-center">
+        <canvas id="myChart" style="width:100%;max-width:550px"></canvas>
+    </div>
+
+    
+</div>
+    <footer class="footer">
+        Developed by: <a href="https://www.linkedin.com/in/luckyandeee" target="_blank"><b class="link-warning"> Vemuri Sai Srinivas </b></a>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="script.js"></script>
+
+</html>
